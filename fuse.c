@@ -71,29 +71,6 @@ void push_back(struct queue *qp, const char key[], const char value[])
     }
 }
 
-void push_front(struct queue *qp, const char key[], const char value[])
-{
-    struct node *box = calloc(1, sizeof *box);
-    box->key = calloc(1, MAX_PATH * sizeof box->key);
-    box->value = calloc(1, MAX_PATH * sizeof box->value);
-    strcpy(box->key, key);
-    strcpy(box->value, value);
-    box->next = box->prev = NULL;
-
-    if (qp->size == 0)
-    {
-        qp->head = qp->tail = box;
-        qp->size++;
-    }
-    else
-    {
-        qp->head->prev = box;
-        box->next = qp->head;
-        qp->head = box;
-        qp->size++;
-    }
-}
-
 void find_value(struct queue *qp, char fpath[], const char key[])
 {
     struct node *it = qp->head;
